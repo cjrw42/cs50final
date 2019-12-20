@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<h2 class="led">123456.7890&deg;c mbar % +=-</h2>    
+    
+
+<canvas id="myChart1" width="100" height="50"></canvas>
+    
+<script>
+var ctx = document.getElementById('myChart1');
+var myChart = new Chart(ctx, {
+	type: "doughnut",
+	data: {
+		datasets: [{
+            data: [55, 200],
+            backgroundColor: ['#007bff','#ddd']
+        }],
+    labels: [
+        'used',
+        'free'
+    ]
+	},
+	options: {
+	    legend: {
+            display: false
+	    },
+        rotation: -1.0 * Math.PI, // start angle in radians
+        circumference: Math.PI, // sweep angle in radians
+    }
+
+});
+</script>
+<canvas id="myChart2"></canvas>
+    
+<script>
+var ctx = document.getElementById('myChart2');
+var myChart = new Chart(ctx, {
+	type: "doughnut",
+	data: {
+		datasets: [{
+            data: [155, 100],
+            backgroundColor: ['#007bff','#ddd']
+        }],
+    labels: [
+        'used',
+        'free'
+    ]
+	},
+	options: {
+	    legend: {
+            display: false
+	    },
+        rotation: -1.0 * Math.PI, // start angle in radians
+        circumference: Math.PI, // sweep angle in radians
+    }
+
+});
+</script>
+{% endblock %}

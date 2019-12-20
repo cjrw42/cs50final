@@ -1,0 +1,217 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div><h2>Sys info::</h2></div>
+<div><h4> Uptime : <span class="led">{{ uptime }}</span> (hours)</h4></div>
+
+<center>
+
+<canvas id="caseTemps"></canvas>
+    
+<script>
+var ctx = document.getElementById('caseTemps');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [
+          {% for row in data1 %}
+            "{{ row[0] }}",
+          {% endfor %}
+        ],
+            
+        
+        datasets: [{
+            label: 'Case Temps last 24hrs (Centigrade)',
+            data: [
+            {% for row in data1 %}
+              {{ row[1] }},
+            {% endfor %}
+        ],
+            backgroundColor: [
+                'rgba(0, 66, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(0, 123, 255, 1)'
+            ],
+            borderWidth: 1,
+            pointRadius: 0
+        }]
+    },
+    options: {
+        animation: {
+            duration : 3000
+        },
+        tooltips: {
+            mode: 'point'
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    source: 'auto'
+                }
+            }]
+        }
+    }
+});
+</script>
+<br/><br/><br/>  
+
+<canvas id="cpuTemps"></canvas>
+    
+<script>
+var ctx = document.getElementById('cpuTemps');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [
+          {% for row in data2 %}
+            "{{ row[0] }}",
+          {% endfor %}
+        ],
+            
+        
+        datasets: [{
+            label: 'CPU Temps last 24 hrs (Centigrade)',
+            data: [
+            {% for row in data2 %}
+              {{ row[1] }},
+            {% endfor %}
+        ],
+            backgroundColor: [
+                'rgba(0, 66, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(0, 123, 255, 1)'
+            ],
+            borderWidth: 1,
+            pointRadius: 0
+        }]
+    },
+    options: {
+        animation: {
+            duration : 3000
+        },
+        tooltips: {
+            mode: 'point'
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    source: 'auto'
+                }
+            }]
+        }
+    }
+});
+</script>
+<br/><br/><br/>
+<canvas id="loadAvs"></canvas>
+    
+<script>
+var ctx = document.getElementById('loadAvs');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [
+          {% for row in data3 %}
+            "{{ row[0] }}",
+          {% endfor %}
+        ],
+            
+        
+        datasets: [{
+            label: 'Load averages last 24 hrs',
+            data: [
+            {% for row in data3 %}
+              {{ row[1] }},
+            {% endfor %}
+        ],
+            backgroundColor: [
+                'rgba(0, 66, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(0, 123, 255, 1)'
+            ],
+            borderWidth: 1,
+            pointRadius: 0
+        }]
+    },
+    options: {
+        animation: {
+            duration : 3000
+        },
+        tooltips: {
+            mode: 'point'
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    source: 'auto'
+                }
+            }]
+        }
+    }
+});
+</script>
+<br/><br/><br/>
+
+<canvas id="freeSpace"></canvas>
+    
+<script>
+var ctx = document.getElementById('freeSpace');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [
+          {% for row in data4 %}
+            "{{ row[0] }}",
+          {% endfor %}
+        ],
+            
+        
+        datasets: [{
+            label: 'free Space - All time :: (Daily levels) ',
+            data: [
+            {% for row in data4 %}
+              {{ row[1] }},
+            {% endfor %}
+        ],
+            backgroundColor: [
+                'rgba(0, 66, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(0, 123, 255, 1)'
+            ],
+            borderWidth: 1,
+            pointRadius: 0
+        }]
+    },
+    options: {
+        animation: {
+            duration : 3000
+        },
+        tooltips: {
+            mode: 'point'
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    max: 8000000
+                }
+            }]
+        }
+    }
+});
+</script>
+
+
+    
+  </center>
+
+
+{% endblock %}
+

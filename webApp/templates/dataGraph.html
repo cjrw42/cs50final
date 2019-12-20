@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div><h2>{{ heading }}</h2></div>
+<center>
+<canvas id="myChart"></canvas>
+    
+<script>
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [
+          {% for row in data %}
+            "{{ row[0] }}",
+          {% endfor %}
+        ],
+            
+        
+        datasets: [{
+            label: '{{ graphTitle }}',
+            data: [
+            {% for row in data %}
+              {{ row[1] }},
+            {% endfor %}
+        ],
+            backgroundColor: [
+                'rgba(0, 66, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(0, 123, 255, 1)'
+            ],
+            borderWidth: 1,
+            pointRadius: 0
+        }]
+    },
+    options: {
+        animation: {
+            duration : 3000
+        },
+        tooltips: {
+            mode: 'point'
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    source: 'auto'
+                }
+            }]
+        }
+    }
+});
+</script>
+    
+    
+  </center>
+
+<hr>
+ <table id="dataTable" class="table table-striped table-bordered compact">
+     <thead>
+        <tr>
+            <th>TimeStamp</th>
+            <th>Sensor Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- sxcripts needed for datatables -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script>
+       $(document).ready(function() {
+    $('#dataTable').DataTable({
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        "bSort" : false
+    });
+} );
+</script>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+
+
+.paginate_button:hover{
+    background-color: #fff !important;
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #585858), color-stop(100%, #111)); */
+    background: -moz-linear-gradient(top, #fff 0%, #fff 100%);
+    background: -ms-linear-gradient(top, #fff 0%, #fff 100%);
+    background: -o-linear-gradient(top, #fff 0%, #fff 100%);
+    color: #fff !important;
+}
+
+.paginate_button{
+    padding: 1px !important;
+    color: #fff !important;
+    
+}
+.led {
+   font-family: 'Segment7Standard';
+   font-weight: normal;
+   font-style: italic;
+   color: #007bff;
+   font-size: 2em;
+}
+
+.orb{
+    font-family: 'Orbitron', sans-serif;
+
+}
