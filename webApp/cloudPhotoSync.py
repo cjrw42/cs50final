@@ -8,7 +8,7 @@ import sys
 os.chdir(sys.path[0]) # make sure we can find the json files when we call the script from cron
 
 #============================================================================
-photoDir="/home/pi/sensorProj/final/webApp/images/archive/"
+photoDir="/home/pi/sensorProj/final/webApp/static/images/archive/"
 #============================================================================
 try:
 

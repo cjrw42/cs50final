@@ -1,6 +1,7 @@
 from flask import Flask, Markup, jsonify, redirect, render_template, request
 from datetime import datetime
 import functions
+import time
 
 
 # Configure application
@@ -25,7 +26,13 @@ def after_request(response):
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    img = functions.myWebCam()
+    light = functions.myLight()
+    rain = functions.myRain()
+    soil = functions.mySoil()
+    humidity,temp = functions.myHumiTemp()
+    pressure,dummy = functions.myPressureTemp()
+    return render_template("index.html", light=light, rain=rain, soil=soil, humidity=humidity, temp=temp, pressure=pressure)
     
 
 

@@ -7,7 +7,7 @@ os.chdir(sys.path[0])
 
 
 try:
-    path ="/home/pi/sensorProj/final/webApp/images/archive/" + time.strftime('%Y%m%d%H%M') +".jpg"
+    path ="/home/pi/sensorProj/final/webApp/static/images/archive/" + time.strftime('%Y%m%d%H%M') +".jpg"
             
     hum,temp = functions.myHumiTemp()
     pressure,tempEnce = functions.myPressureTemp()

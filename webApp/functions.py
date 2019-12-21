@@ -74,7 +74,7 @@ def myLight():
         ret = 255 - ret
         return ret
     except:
-        return (-1)
+        return (-999)
 
 #============================================================================        
 
@@ -241,7 +241,7 @@ def myCpuTemp():
     
 def myWebCam():
     
-    path = "/home/pi/sensorProj/final/webApp/images/cam.jpg"
+    path = "/home/pi/sensorProj/final/webApp/static/images/cam.jpg"
     commandLine = 'raspistill -n -w 1024 -h 768 -q 80 -t 1 -o ' + path
     os.system(commandLine)
     

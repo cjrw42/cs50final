@@ -2,59 +2,225 @@
 
 {% block main %}
 
-<h2 class="led">123456.7890&deg;c mbar % +=-</h2>    
-    
+<main role="main">
 
-<canvas id="myChart1" width="100" height="50"></canvas>
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Live Sensor Data</h1>
+          <p>Real-time Light, soil, rain, humidty pressure and temperature data readings from the system and live image capture</p>
+          
+        </div>
+      </div>
     
-<script>
-var ctx = document.getElementById('myChart1');
-var myChart = new Chart(ctx, {
-	type: "doughnut",
-	data: {
-		datasets: [{
-            data: [55, 200],
-            backgroundColor: ['#007bff','#ddd']
-        }],
-    labels: [
-        'used',
-        'free'
-    ]
-	},
-	options: {
-	    legend: {
-            display: false
-	    },
-        rotation: -1.0 * Math.PI, // start angle in radians
-        circumference: Math.PI, // sweep angle in radians
-    }
-
-});
-</script>
-<canvas id="myChart2"></canvas>
+      
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-4">
+            <h2 class="text-center">Light</h2>
+            <p><canvas id="myChart1" width="100" height="50"></canvas>
     
-<script>
-var ctx = document.getElementById('myChart2');
-var myChart = new Chart(ctx, {
-	type: "doughnut",
-	data: {
-		datasets: [{
-            data: [155, 100],
-            backgroundColor: ['#007bff','#ddd']
-        }],
-    labels: [
-        'used',
-        'free'
-    ]
-	},
-	options: {
-	    legend: {
-            display: false
-	    },
-        rotation: -1.0 * Math.PI, // start angle in radians
-        circumference: Math.PI, // sweep angle in radians
-    }
+                <script>
+                var ctx = document.getElementById('myChart1');
+                var myChart = new Chart(ctx, {
+                	type: "doughnut",
+                	data: {
+                		datasets: [{
+                            data: [{{ light }}, 255 - {{ light }}],
+                            backgroundColor: ['#007bff','#ddd']
+                        }]
+                	},
+                	options: {
+                	    legend: {
+                            display: false
+                	    },
+                        rotation: -1.0 * Math.PI, // start angle in radians
+                        circumference: Math.PI, // sweep angle in radians
+                    }
+                
+                });
+                </script>
+            </p>
+            <p class="led" align="center">{{ light }}</p>
+          </div>
+          
+          
+          <div class="col-md-4">
+            <h2 class="text-center">Rain</h2>
+            <p><canvas id="myChart2" width="100" height="50"></canvas>
+    
+                <script>
+                var ctx = document.getElementById('myChart2');
+                var myChart = new Chart(ctx, {
+                	type: "doughnut",
+                	data: {
+                		datasets: [{
+                            data: [{{ rain }}, 255 - {{ rain }}],
+                            backgroundColor: ['#007bff','#ddd']
+                        }]
+                	},
+                	options: {
+                	    legend: {
+                            display: false
+                	    },
+                        rotation: -1.0 * Math.PI, // start angle in radians
+                        circumference: Math.PI, // sweep angle in radians
+                    }
+                
+                });
+                </script>
+            </p>
+            <p class="led" align="center">{{ rain }}</p>
+          </div>
 
-});
-</script>
+          <div class="col-md-4">
+            <h2 class="text-center">Soil</h2>
+            <p><canvas id="myChart3" width="100" height="50"></canvas>
+    
+                <script>
+                var ctx = document.getElementById('myChart3');
+                var myChart = new Chart(ctx, {
+                	type: "doughnut",
+                	data: {
+                		datasets: [{
+                            data: [{{ soil }}, 255 - {{ soil }}],
+                            backgroundColor: ['#007bff','#ddd']
+                        }]
+                	},
+                	options: {
+                	    legend: {
+                            display: false
+                	    },
+                        rotation: -1.0 * Math.PI, // start angle in radians
+                        circumference: Math.PI, // sweep angle in radians
+                    }
+                
+                });
+                </script>
+            </p>
+            <p class="led" align="center">{{ soil }}</p>
+          </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-md-4">
+            
+            <h2 class="text-center">Pressure:(mbar)</h2>
+            {% if pressure > -999 %}
+            <p><canvas id="myChart4" width="100" height="50"></canvas>
+    
+                <script>
+                var ctx = document.getElementById('myChart4');
+                var myChart = new Chart(ctx, {
+                	type: "doughnut",
+                	data: {
+                		datasets: [{
+                            data: [{{ pressure }} - 930, 1040 - {{ pressure }}],
+                            backgroundColor: ['#007bff','#ddd']
+                        }]
+                	},
+                	options: {
+                	    legend: {
+                            display: false
+                	    },
+                        rotation: -1.0 * Math.PI, // start angle in radians
+                        circumference: Math.PI, // sweep angle in radians
+                    }
+                
+                });
+                </script>
+            </p>
+            <p class="led" align="center">{{ pressure }}</p>
+            {% else %}
+            <p class = "led">error</p>
+            {% endif %}
+          </div>
+          
+          
+          <div class="col-md-4">
+            <h2 class="text-center">Humidity:(%)</h2>
+            {% if humidity > -999 %}
+            <p><canvas id="myChart5" width="100" height="50"></canvas>
+    
+                <script>
+                var ctx = document.getElementById('myChart5');
+                var myChart = new Chart(ctx, {
+                	type: "doughnut",
+                	data: {
+                		datasets: [{
+                            data: [{{ humidity }}, 120 - {{ humidity }}],
+                            backgroundColor: ['#007bff','#ddd']
+                        }]
+                	},
+                	options: {
+                	    legend: {
+                            display: false
+                	    },
+                        rotation: -1.0 * Math.PI, // start angle in radians
+                        circumference: Math.PI, // sweep angle in radians
+                    }
+                
+                });
+                </script>
+            </p>
+            <p class="led" align="center">{{ humidity }}</p>
+            {% else %}
+            <p class = "led">error</p>
+            {% endif %}
+          </div>
+
+          <div class="col-md-4">
+            <h2 class="text-center">Temperature:(&deg;C)</h2>
+            {% if temp > -999 %}
+            <p><canvas id="myChart6" width="100" height="50"></canvas>
+    
+                <script>
+                var ctx = document.getElementById('myChart6');
+                var myChart = new Chart(ctx, {
+                	type: "doughnut",
+                	data: {
+                		datasets: [{
+                            data: [{{ temp }}+20, 62 - ({{ temp }}+20)],
+                            backgroundColor: ['#007bff','#ddd']
+                        }]
+                	},
+                	options: {
+                	    legend: {
+                            display: false
+                	    },
+                        rotation: -1.0 * Math.PI, // start angle in radians
+                        circumference: Math.PI, // sweep angle in radians
+                    }
+                
+                });
+                </script>
+            </p>
+            <p class="led" align="center">{{ temp }}</p>
+            {% else %}
+            <p class = "led">error</p>
+            {% endif %}
+          </div>
+
+        </div>
+
+        <hr>
+
+        <div><img src="./static/images/cam.jpg" class="img-fluid rounded"></div>
+        <div>
+            <hr>
+            <p><em>
+            (Page may be slow to load / refresh due to potentially long read-times on the DHT11 humidity sensor)    
+          </em></p><hr></div>
+
+      </div> <!-- /container -->
+
+    </main>
+
+
+
+
 {% endblock %}
