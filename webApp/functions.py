@@ -115,7 +115,7 @@ def myHumiTemp():
     """
     sensor = Adafruit_DHT.DHT11
     pin = 17
-    ret = []
+    ret = [-999,-999]
     try: 
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
         if humidity is not None and temperature is not None:
@@ -226,7 +226,7 @@ def myPressureTemp():
         values = readBmp180()
         return values
     except:
-        return (-1)
+        return (-999)
  
 #============================================================================ 
  
