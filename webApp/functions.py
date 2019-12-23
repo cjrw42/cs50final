@@ -115,7 +115,7 @@ def myHumiTemp():
     """
     sensor = Adafruit_DHT.DHT11
     pin = 17
-    ret = [-999,-999]
+    ret = []
     try: 
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
         if humidity is not None and temperature is not None:
@@ -123,6 +123,8 @@ def myHumiTemp():
             ret.append(int(temperature))
         return ret
     except:
+        # drop in some error values so we can filter out at the sql level
+        ret = [-999,-999]
         return ret
     
 #============================================================================
